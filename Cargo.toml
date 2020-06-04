@@ -1,10 +1,12 @@
 [package]
 name = "canonicalize"
-version = "0.1.3"
+version = "0.1.4"
 authors = ["Matthias Kaak <m.kaak@protonmail.ch>"]
 edition = "2018"
 description = "A rust library to canonicalize values"
+documentation = "https://docs.rs/canonicalize"
 readme = "README.md"
+homepage = "https://github.com/zvavybir/canonicalize"
 repository = "https://github.com/zvavybir/canonicalize"
 license = "LGPL-3.0+"
 
