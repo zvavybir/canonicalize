@@ -1,8 +1,11 @@
-#![no_std]
+#![cfg_attr(not(feature = "std"), no_std)]
 
 use core::cell::Cell;
 use core::cell::Ref;
 use core::cell::UnsafeCell;
+
+#![cfg(std)]
+mod std;
 
 /// Canonicalizes values
 ///
@@ -58,4 +61,9 @@ impl<T: Canonicalize, E: Canonicalize> Canonicalize for Result<T, E>
             Err(e) => Err(e.canon()),
         }
     }
+}
+
+fn t()
+{
+    let _x: Vec<u8>;
 }
