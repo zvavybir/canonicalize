@@ -8,7 +8,7 @@ use core::cell::UnsafeCell;
 ///
 /// Every type implementing this trait can be canonicalited.
 ///
-/// Many `core` type implement this trait
+/// Many `core` types implement this trait
 pub trait Canonicalize: Sized
 {
     /// Performs the canonicalizing
