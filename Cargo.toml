@@ -1,6 +1,6 @@
 [package]
 name = "canonicalize"
-version = "0.1.4"
+version = "0.1.5"
 authors = ["Matthias Kaak <m.kaak@protonmail.ch>"]
 edition = "2018"
 description = "A rust library to canonicalize values"

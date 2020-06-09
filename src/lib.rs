@@ -3,15 +3,24 @@
 use core::cell::Cell;
 use core::cell::Ref;
 use core::cell::UnsafeCell;
+use core::any::TypeId;
+use core::array::TryFromSliceError;
+use core::ascii;
+use core::cmp::Ordering;
+use core::str::Utf8Error;
+use core::fmt::Formatter;
+use core::time::Duration;
 
-#![cfg(std)]
+#[cfg(feature = "std")]
 mod std;
 
 /// Canonicalizes values
 ///
 /// Every type implementing this trait can be canonicalited.
 ///
-/// Many `core` types implement this trait
+/// Many `core` and `std` types implement this trait.
+///
+/// It is garanteed that it will never be cloned.
 pub trait Canonicalize: Sized
 {
     /// Performs the canonicalizing
@@ -21,6 +30,7 @@ pub trait Canonicalize: Sized
     }
 }
 
+impl Canonicalize for () {}
 impl Canonicalize for u8 {}
 impl Canonicalize for i8 {}
 impl Canonicalize for u16 {}
@@ -38,6 +48,14 @@ impl Canonicalize for char {}
 impl<T> Canonicalize for Cell<T> {}
 impl<T> Canonicalize for Ref<'_, T> {}
 impl<T> Canonicalize for UnsafeCell<T> {}
+impl Canonicalize for TypeId {}
+impl Canonicalize for TryFromSliceError {}
+impl Canonicalize for ascii::EscapeDefault {}
+impl Canonicalize for Ordering {}
+impl Canonicalize for Utf8Error {}
+impl Canonicalize for Formatter<'_> {}
+impl Canonicalize for core::fmt::Error {}
+impl Canonicalize for Duration {}
 
 impl<T: Canonicalize> Canonicalize for Option<T>
 {
@@ -61,9 +79,4 @@ impl<T: Canonicalize, E: Canonicalize> Canonicalize for Result<T, E>
             Err(e) => Err(e.canon()),
         }
     }
-}
-
-fn t()
-{
-    let _x: Vec<u8>;
 }

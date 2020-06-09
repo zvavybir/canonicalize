@@ -6,3 +6,6 @@ This crate offers the trait `Canonicalize` which can be used to canonicalize val
 
 ## Help
 If you want to help you can make a pull request, write me a e-mail with suggestions (especially but not only about which types should have (not) a standard implementation) or do something not crossing my mind yet.
+
+## Breaking Changes
+Before version 1.0.0 breaking changes may occure.
